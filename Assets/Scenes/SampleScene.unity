@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 1970673374}
   - component: {fileID: 1970673373}
   m_Layer: 0
-  m_Name: boop
+  m_Name: boop2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
