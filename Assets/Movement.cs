@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockDtate = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
@@ -25,7 +25,7 @@ public class Movement : MonoBehaviour
         float mouseY = Input.GetAxisRaw("MY") * Time.deltaTime * sensY;
 
         rotX += mouseX;
-        rotY -+ mouseY;
+        rotY -= mouseY;
 
         rotX = Mathf.Clamp(rotX, -90f, 90f);
 
