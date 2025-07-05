@@ -659,7 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fdb305422c43a24584aa87d58ee5068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPosition: {fileID: 0}
+  cameraPosition: {fileID: 1855148610}
 --- !u!1 &1797960002
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,7 +670,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1797960003}
   m_Layer: 0
-  m_Name: Orien
+  m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -807,8 +807,9 @@ GameObject:
   - component: {fileID: 2063136989}
   - component: {fileID: 2063136991}
   - component: {fileID: 2063136990}
+  - component: {fileID: 2063136992}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: PlayerCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -888,6 +889,21 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &2063136992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063136988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc4968da7acf8754fb8e03fd08707e71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensX: 400
+  sensY: 400
+  orien: {fileID: 1797960003}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
