@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Memory Dive.sln"
+    "dotnet.defaultSolution": "memory-dive.sln"
 }
