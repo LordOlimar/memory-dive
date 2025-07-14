@@ -6,18 +6,14 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     [SerializeField] private float pickUpRange = 5f;
-    [SerializeField] private float rotationSpeed = 1f;
     private Transform holdPos;
     private int LayerNumber; //layer index
     private GameObject heldObj; //held object
     private Rigidbody heldObjRB; //held object rigidbody
     private bool canDrop = true;
 
-    PlayerCam mouseLookScript;
-
     private void Start()
     {
-        mouseLookScript = this.GetComponent<PlayerCam>();
         holdPos = this.transform.Find("holdPos").transform;
         LayerNumber = LayerMask.NameToLayer("PickUp");
     }
@@ -52,7 +48,6 @@ public class PickUp : MonoBehaviour
         if (heldObj != null) //if player is holding object
         {
             heldObj.transform.position = holdPos.transform.position; //keep object position at holdPos
-            RotateObject();
         }
     }
 
@@ -65,6 +60,7 @@ public class PickUp : MonoBehaviour
             heldObjRB.isKinematic = true;
             heldObjRB.transform.parent = holdPos.transform; //parent object to holdpos object
             heldObj.layer = LayerNumber; //change the object layer to the holdLayer
+            heldObj.GetComponent<Interactable>().PickUpObject();
         }
     }
 
@@ -73,30 +69,8 @@ public class PickUp : MonoBehaviour
         heldObj.layer = 0; //object assigned back to default layer
         heldObjRB.isKinematic = false;
         heldObj.transform.parent = null; //unparent object
+        heldObj.GetComponent<Interactable>().DropObject();
         heldObj = null;
-    }
-
-    private void RotateObject()
-    {
-        if (Input.GetKey(KeyCode.R)) //hold R key to rotate
-        {
-            canDrop = false;
-
-            //disable player being able to look around
-            mouseLookScript.enabled = false;
-
-            float XaxisRotation = Input.GetAxis("Mouse X") * rotationSpeed;
-            float YaxisRotation = Input.GetAxis("Mouse Y") * rotationSpeed;
-            //rotate the object depending on mouse X-Y Axis
-            heldObj.transform.Rotate(Vector3.down, XaxisRotation);
-            heldObj.transform.Rotate(Vector3.right, YaxisRotation);
-        }
-        else
-        {
-            //re-enable player being able to look around
-            mouseLookScript.enabled = true;
-            canDrop = true;
-        }
     }
 
     private void StopClipping()
