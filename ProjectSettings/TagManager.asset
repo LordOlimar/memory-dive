@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerCam
   - canPickUp
+  - PickUpCam
   layers:
   - Default
   - TransparentFX

@@ -26,8 +26,11 @@ public class PickUp : MonoBehaviour
             {
                 //check if player is looking at a pickupable object within pickuprange
                 RaycastHit hit;
+                Debug.Log("AAA");
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red, pickUpRange);
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
                 {
+                    Debug.Log(hit);
                     if (hit.transform.gameObject.tag == "canPickUp")
                     {
                         PickUpObject(hit.transform.gameObject); //pass hit object to PickUpObject function
