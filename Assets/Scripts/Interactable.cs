@@ -11,16 +11,16 @@ public class Interactable : MonoBehaviour
     [HideInInspector] public bool active;
     private Vector3 startPosition;
     private Quaternion startRotation;
-    private GameObject player;
-    private GameObject playerCam;
+    //private GameObject player;
+    //private GameObject playerCam;
     
 
     protected void Start()
     {
         startPosition = transform.position;
         startRotation = transform.rotation;
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerCam = GameObject.FindGameObjectWithTag("PlayerCam");
+        //player = GameObject.FindGameObjectWithTag("Player");
+        //playerCam = GameObject.FindGameObjectWithTag("PlayerCam");
     }
 
     private void Update()
@@ -41,9 +41,9 @@ public class Interactable : MonoBehaviour
     {
         if (disablePlayer)
         {
-            playerCam.GetComponent<PlayerCam>().enabled = false;
-            player.GetComponent<PlayerMovement>().enabled = false;
-            player.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+            //playerCam.GetComponent<PlayerCam>().enabled = false;
+            //player.GetComponent<PlayerMovement>().enabled = false;
+            //player.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
         }
@@ -54,8 +54,8 @@ public class Interactable : MonoBehaviour
     {
         if (disablePlayer)
         {
-            player.GetComponent<PlayerMovement>().enabled = true;
-            playerCam.GetComponent<PlayerCam>().enabled = true;
+            //player.GetComponent<PlayerMovement>().enabled = true;
+            //playerCam.GetComponent<PlayerCam>().enabled = true;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
