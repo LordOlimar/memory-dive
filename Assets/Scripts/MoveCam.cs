@@ -9,7 +9,7 @@ public class MoveCam : MonoBehaviour
     [SerializeField] private float minZoom = 2;
     [SerializeField] private float maxZoom = 10;
     [SerializeField] private float rotationSpeed = 5;
-    private float currentZoom;
+    public float currentZoom;
     private Camera cam1;
     private Camera cam2;
 

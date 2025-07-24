@@ -7,10 +7,15 @@ public class Phone : MonoBehaviour
 {
     private TMP_Text phoneText;
     private GameObject playerCam;
+    private Vector3 intialScale;
+    private MoveCam isoCam;
+    private float scale;
     private void Start()
     {
         phoneText = transform.Find("PhoneScreen/Phone Text").GetComponent<TMP_Text>();
         playerCam = GameObject.FindGameObjectWithTag("PlayerCam");
+        isoCam = GameObject.FindGameObjectWithTag("IsoCam").GetComponent<MoveCam>();
+        intialScale = transform.localScale;
     }
     private void Update()
     {
@@ -18,6 +23,13 @@ public class Phone : MonoBehaviour
         {
             transform.LookAt(playerCam.transform.position, Vector3.up);
             transform.rotation = transform.rotation * Quaternion.Euler(90, 0, 0);
+
+            scale = isoCam.currentZoom;
+            transform.localScale = new Vector3(0.5f * scale, intialScale.y, 1 * scale);
+        }
+        else
+        {
+            transform.localScale = intialScale;
         }
 
     }

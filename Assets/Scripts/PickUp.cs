@@ -48,7 +48,7 @@ public class PickUp : MonoBehaviour
         }
         if (heldObj != null) //if player is holding object
         {
-            heldObj.transform.position = holdPos.transform.position; //keep object position at holdPos
+            //heldObj.transform.position = holdPos.transform.position; //keep object position at holdPos
         }
     }
 

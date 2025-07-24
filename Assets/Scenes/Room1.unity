@@ -2357,7 +2357,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 1
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -3791,6 +3791,7 @@ MonoBehaviour:
   minZoom: 2
   maxZoom: 10
   rotationSpeed: 5
+  currentZoom: 0
 --- !u!4 &1250978054
 Transform:
   m_ObjectHideFlags: 0
@@ -4954,7 +4955,7 @@ GameObject:
   - component: {fileID: 1699310101}
   m_Layer: 0
   m_Name: IsometricCamera
-  m_TagString: Untagged
+  m_TagString: IsoCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4992,6 +4993,7 @@ MonoBehaviour:
   minZoom: 1
   maxZoom: 7
   rotationSpeed: 500
+  currentZoom: 0
 --- !u!1 &1775885703
 GameObject:
   m_ObjectHideFlags: 0
@@ -6033,7 +6035,6 @@ GameObject:
   - component: {fileID: 2135343056}
   - component: {fileID: 2135343059}
   - component: {fileID: 2135343058}
-  - component: {fileID: 2135343060}
   - component: {fileID: 2135343061}
   m_Layer: 0
   m_Name: PlayerCam
@@ -6102,7 +6103,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 1
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -6118,21 +6119,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &2135343060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2135343055}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d346273e6cc209449c22b6efb555b63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensX: 400
-  sensY: 400
-  orientation: {fileID: 386898331}
 --- !u!114 &2135343061
 MonoBehaviour:
   m_ObjectHideFlags: 0
