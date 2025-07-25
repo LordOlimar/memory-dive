@@ -29,11 +29,13 @@ public class CustomPlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        Debug.Log("Spawning player: " + player);  // 🔍 Add this
+        Debug.Log("Spawning player: " + player);
 
         if (player == runner.LocalPlayer)
         {
-            GameObject prefab = pcPlayerPrefab; // forced to PC for now
+            bool isVR = XRSettings.isDeviceActive;
+            GameObject prefab = isVR ? vrPlayerPrefab : pcPlayerPrefab;
+
             runner.Spawn(prefab, Vector3.zero, Quaternion.identity, player);
         }
     }
