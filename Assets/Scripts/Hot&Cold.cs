@@ -39,7 +39,7 @@ public class HotCold : MonoBehaviour
     void Update()
     {
         Vector3 eulerAngles = transform.eulerAngles;
-        float xRotation = eulerAngles.x - wantedAngle;
+        float xRotation = eulerAngles.z - wantedAngle;
 
         float t = Mathf.Clamp01(xRotation / colorChangeDistance);
         Color newColor = gradient.Evaluate(t);
