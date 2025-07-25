@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Fusion.DynamicHeap;
 
 public class PickUp : MonoBehaviour
 {
     [SerializeField] private float pickUpRange = 5f;
     private Transform holdPos;
     private int LayerNumber; //layer index
+    [SerializeField] private LayerMask ignore; //layer index
     private GameObject heldObj; //held object
     private Rigidbody heldObjRB; //held object rigidbody
     private bool canDrop = true;
@@ -29,7 +31,7 @@ public class PickUp : MonoBehaviour
                 Vector3 mousePos = Input.mousePosition;
                 mousePos.z = 10f;
                 mousePos = GetComponent<Camera>().ScreenToWorldPoint(mousePos);
-                if (Physics.Raycast(transform.position, mousePos-transform.position, out hit, pickUpRange))
+                if (Physics.Raycast(transform.position, mousePos-transform.position, out hit, pickUpRange, ~ignore))
                 {
                     if (hit.transform.gameObject.tag == "canPickUp")
                     {

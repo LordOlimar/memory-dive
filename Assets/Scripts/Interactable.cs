@@ -11,20 +11,20 @@ public class Interactable : MonoBehaviour
     [HideInInspector] public bool active;
     private Vector3 startPosition;
     private Quaternion startRotation;
-    //private GameObject player;
-    //private GameObject playerCam;
-    
+    private MoveCam isoCam;
+
 
     protected void Start()
     {
         startPosition = transform.position;
         startRotation = transform.rotation;
-        //player = GameObject.FindGameObjectWithTag("Player");
-        //playerCam = GameObject.FindGameObjectWithTag("PlayerCam");
+        isoCam = GameObject.FindGameObjectWithTag("IsoCam").GetComponent<MoveCam>();
     }
 
     private void Update()
     {
+        if (isoCam == null) { isoCam = GameObject.FindGameObjectWithTag("IsoCam").GetComponent<MoveCam>(); }
+
         if (active)
         {
             if (canRotate && Input.GetKey(KeyCode.R)) //hold R key to rotate
@@ -41,9 +41,7 @@ public class Interactable : MonoBehaviour
     {
         if (disablePlayer)
         {
-            //playerCam.GetComponent<PlayerCam>().enabled = false;
-            //player.GetComponent<PlayerMovement>().enabled = false;
-            //player.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+            isoCam.enabled = false;
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
         }
@@ -54,8 +52,7 @@ public class Interactable : MonoBehaviour
     {
         if (disablePlayer)
         {
-            //player.GetComponent<PlayerMovement>().enabled = true;
-            //playerCam.GetComponent<PlayerCam>().enabled = true;
+            isoCam.enabled = true;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
