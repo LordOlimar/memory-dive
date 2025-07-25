@@ -8,6 +8,10 @@ TagManager:
   - Pillow
   - Left Hand
   - Right Hand
+  - PlayerCam
+  - canPickUp
+  - PickUpCam
+  - IsoCam
   layers:
   - Default
   - TransparentFX
@@ -15,7 +19,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - PickUp
   - 
   - 
   - 
