@@ -15,7 +15,7 @@ public class MoveCam : MonoBehaviour
 
     private void Start()
     {
-        cam1 = GameObject.FindGameObjectWithTag("PlayerCam").GetComponent<Camera>();
+        cam1 = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         cam2 = GameObject.FindGameObjectWithTag("PickUpCam").GetComponent<Camera>();
     }
 

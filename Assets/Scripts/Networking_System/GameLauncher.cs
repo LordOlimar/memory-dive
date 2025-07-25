@@ -7,6 +7,13 @@ public class GameLauncher : MonoBehaviour
 
     async void Start()
     {
+
+        FindObjectOfType<CustomPlayerSpawner>().StartGame(GameMode.AutoHostOrClient);
+        if (runnerPrefab == null)
+        {
+            Debug.LogError("Runner prefab is not assigned!");
+            return;
+        }
         var runner = Instantiate(runnerPrefab);
         runner.ProvideInput = true;
 
