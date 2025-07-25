@@ -31,7 +31,7 @@ public class CustomPlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {
         if (player == runner.LocalPlayer)
         {
-            bool isVR = XRSettings.isDeviceActive;
+            bool isVR = false;//XRSettings.isDeviceActive;
             GameObject prefab = isVR ? vrPlayerPrefab : pcPlayerPrefab;
 
             runner.Spawn(prefab, Vector3.zero, Quaternion.identity, player);
