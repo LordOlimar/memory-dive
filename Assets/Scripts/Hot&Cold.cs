@@ -40,6 +40,7 @@ public class HotCold : MonoBehaviour
     {
         Vector3 eulerAngles = transform.eulerAngles;
         float xRotation = eulerAngles.z - wantedAngle;
+        xRotation = xRotation % 360;
 
         float t = Mathf.Clamp01(xRotation / colorChangeDistance);
         Color newColor = gradient.Evaluate(t);

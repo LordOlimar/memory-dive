@@ -9,6 +9,7 @@ public class Rotator : MonoBehaviour
     [SerializeField] private Vector3 _rotation;
     [SerializeField] private float _speed;
     float horizontalInput;
+    bool enabled;
 
 
     void rotate()
@@ -22,7 +23,7 @@ public class Rotator : MonoBehaviour
     }
     void Update()
     {
-        if (targetObject.activeSelf)
+        if (enabled)
             rotate();
     }
 }
