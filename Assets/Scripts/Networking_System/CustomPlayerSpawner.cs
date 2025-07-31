@@ -27,18 +27,33 @@ public class CustomPlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
         runner.AddCallbacks(this); // VERY important!
     }
 
-    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
-    {
-        Debug.Log("Spawning player: " + player);
+public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
+{
+    // only the “server” runner should actually spawn networked objects,
+    // but Fusion will distribute them to everyone, so this check is okay.
+    if (player != runner.LocalPlayer)
+        return;
 
-        if (player == runner.LocalPlayer)
-        {
-            bool isVR = XRSettings.isDeviceActive;
-            GameObject prefab = isVR ? vrPlayerPrefab : pcPlayerPrefab;
+    // PlayerRef.RawEncoded is the zero-based join index:
+    //  0 → first player, 1 → second player, etc.
+    int joinIndex = (int)player.RawEncoded;
 
-            runner.Spawn(prefab, Vector3.zero, Quaternion.identity, player);
-        }
-    }
+    // pick prefab: index 0 → PC, index 1 → VR, else PC fallback
+    GameObject prefabToSpawn = joinIndex == 0
+        ? pcPlayerPrefab
+        : vrPlayerPrefab;
+
+    Debug.Log($"Player {joinIndex} joined → spawning “{prefabToSpawn.name}” prefab");
+
+    // spawn it for that player
+    runner.Spawn(
+      prefabToSpawn,
+      Vector3.zero,
+      Quaternion.identity,
+      player
+    );
+}
+
 
     // ================= REQUIRED CALLBACKS =================
 
