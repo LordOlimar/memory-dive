@@ -30,24 +30,22 @@ public class CustomPlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
     }
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        // only spawn for your own player
-        if (player != runner.LocalPlayer) 
+        // only run this on the "server" instance
+        if (!runner.IsServer)
             return;
 
+        // RawEncoded: 0=first joiner, 1=second, etc.
+        int joinIndex = (int)player.RawEncoded;
+        
+        // decide which prefab
+        GameObject prefab = (joinIndex == 1)
+            ? vrPlayerPrefab   // second player
+            : pcPlayerPrefab;  // first (and any others)
 
-
-
-        if (count == 0)
-        {
-            GameObject prefabToSpawn = pcPlayerPrefab;
-            runner.Spawn(prefabToSpawn, Vector3.zero, Quaternion.identity, player);
-            count++; ;
-        }
-
-        if (count == 1) {
-            GameObject prefabToSpawn = vrPlayerPrefab;
-            runner.Spawn(prefabToSpawn, Vector3.zero, Quaternion.identity, player);
-        }
+        Debug.Log($"[Spawner] Player#{joinIndex} joined → spawning {prefab.name}");
+        
+        // this spawn will now show up on every client
+        runner.Spawn(prefab, Vector3.zero, Quaternion.identity, player);
     }
 
     // ================= REQUIRED CALLBACKS =================

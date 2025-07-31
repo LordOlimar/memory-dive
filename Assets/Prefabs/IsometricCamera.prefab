@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 4461730534071247948}
   - component: {fileID: 7186745001640012437}
   - component: {fileID: 5650520610705797204}
+  - component: {fileID: 719111093169623861}
   m_Layer: 0
   m_Name: IsometricCamera
   m_TagString: IsoCam
@@ -185,6 +186,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 5650520610705797204}
+  - {fileID: 719111093169623861}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &5650520610705797204
 MonoBehaviour:
@@ -199,6 +201,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 5083804401791543673}
+--- !u!114 &719111093169623861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282148808049975126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c394d07befb0c456185ab6f0e617dcf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 5083804401791543673}
 --- !u!1 &6790373001239636474
 GameObject:
   m_ObjectHideFlags: 0
