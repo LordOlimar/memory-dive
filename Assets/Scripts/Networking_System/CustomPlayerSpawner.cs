@@ -7,6 +7,8 @@ using UnityEngine.XR;
 
 public class CustomPlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
+
+    private int count = 0;
     public GameObject pcPlayerPrefab;
     public GameObject vrPlayerPrefab;
 
@@ -33,7 +35,7 @@ public class CustomPlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
             return;
 
 
-        count = 0;
+
 
         if (count == 0)
         {
