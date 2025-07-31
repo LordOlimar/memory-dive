@@ -38,6 +38,13 @@ public class CustomPlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
             Debug.Log($"Detect VR: {XRSettings.isDeviceActive}");
             runner.Spawn(prefab, Vector3.zero, Quaternion.identity, player);
         }
+        else
+        {
+            bool isVR = true;
+            GameObject prefab = isVR ? vrPlayerPrefab : pcPlayerPrefab;
+            Debug.Log($"Detect VR: {XRSettings.isDeviceActive}");
+            runner.Spawn(prefab, Vector3.zero, Quaternion.identity, player);
+        }
     }
 
     // ================= REQUIRED CALLBACKS =================
