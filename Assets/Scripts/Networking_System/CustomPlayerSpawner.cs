@@ -26,25 +26,23 @@ public class CustomPlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
         runner.AddCallbacks(this); // VERY important!
     }
-
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        Debug.Log("Spawning player: " + player);
+        // only spawn for your own player
+        if (player != runner.LocalPlayer) 
+            return;
 
-        if (player == runner.LocalPlayer)
-        {
-            bool isVR = XRSettings.isDeviceActive;
-            GameObject prefab = isVR ? vrPlayerPrefab : pcPlayerPrefab;
-            Debug.Log($"Detect VR: {XRSettings.isDeviceActive}");
-            runner.Spawn(prefab, Vector3.zero, Quaternion.identity, player);
-        }
-        else
-        {
-            bool isVR = true;
-            GameObject prefab = isVR ? vrPlayerPrefab : pcPlayerPrefab;
-            Debug.Log($"Detect VR: {XRSettings.isDeviceActive}");
-            runner.Spawn(prefab, Vector3.zero, Quaternion.identity, player);
-        }
+        // PlayerRef.RawEncoded is 0 for the first joiner, 1 for the second, etc.
+        int joinIndex = (int)player.RawEncoded;
+
+        // First player → PC, second → VR, any further fallback to PC
+        GameObject prefabToSpawn = joinIndex == 1
+            ? vrPlayerPrefab
+            : pcPlayerPrefab;
+
+        Debug.Log($"Player {joinIndex} joined → spawning {prefabToSpawn.name}");
+
+        runner.Spawn(prefabToSpawn, Vector3.zero, Quaternion.identity, player);
     }
 
     // ================= REQUIRED CALLBACKS =================
