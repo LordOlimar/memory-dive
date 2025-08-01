@@ -2354,6 +2354,8 @@ GameObject:
   - component: {fileID: 1136903620}
   - component: {fileID: 1136903619}
   - component: {fileID: 1136903618}
+  - component: {fileID: 1136903625}
+  - component: {fileID: 1136903626}
   - component: {fileID: 1136903622}
   - component: {fileID: 1136903624}
   - component: {fileID: 1136903623}
@@ -2537,6 +2539,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1136903617}
   m_CullTransparentMesh: 1
+--- !u!170 &1136903625
+AudioDistortionFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136903617}
+  m_Enabled: 1
+  m_DistortionLevel: 1
+--- !u!167 &1136903626
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136903617}
+  m_Enabled: 1
+  m_MinDistance: 10
+  m_MaxDistance: 15
+  m_ReverbPreset: 1
+  m_Room: -1000
+  m_RoomHF: -100
+  m_DecayTime: 1.49
+  m_DecayHFRatio: 0.83
+  m_Reflections: -2602
+  m_ReflectionsDelay: 0.007
+  m_Reverb: 200
+  m_ReverbDelay: 0.011
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
 --- !u!1 &1580821248
 GameObject:
   m_ObjectHideFlags: 0
