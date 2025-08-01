@@ -5,7 +5,7 @@ using UnityEngine;
 public class FirstEnterSoundDad : MonoBehaviour
 {
   
-         public AudioSource source; // Assign in Inspector
+       public AudioSource source; // Assign in Inspector
          public AudioClip collisionSound; // enter sound
          public AudioClip leaveCollisionSound; // exit sound
     void OnCollisionEnter(Collision collision)
