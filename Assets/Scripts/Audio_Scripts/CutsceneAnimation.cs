@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CutsceneAnimationManager : MonoBehaviour
+public class CutsceneAnimation : MonoBehaviour
 {
     public GameObject cutsceneObject; // Reference to the object you want to show/hide
   //  public float inactiveDuration = 13.0f; // Duration the object will be inactive

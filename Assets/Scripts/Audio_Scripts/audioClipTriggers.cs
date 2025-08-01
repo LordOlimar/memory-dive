@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstEnterSoundDad : MonoBehaviour
+public class audioClipTriggers : MonoBehaviour
 {
   
        public AudioSource source; // Assign in Inspector
