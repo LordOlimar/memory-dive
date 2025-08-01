@@ -15,11 +15,15 @@ public class Rotator : MonoBehaviour
     void rotate()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
-        if (horizontalInput == -1) _rotation = Vector3.up;
-        else if (horizontalInput == 1) _rotation = Vector3.down;
-        else _rotation = Vector3.zero;
+        if (horizontalInput == -1)
+            /*transform.rotation = Quaternnion.Euler(x, y, (z + 10));*/
+        _rotation = Vector3.up;
+        else if (horizontalInput == 1)
+       /*transform.rotation = Quaternnion.Euler(x, y, (z - 10));*/
+            _rotation = Vector3.down;
+            else _rotation = Vector3.zero;
 
-        transform.Rotate(_rotation * _speed * Time.deltaTime);
+            transform.Rotate(_rotation * _speed * Time.deltaTime);
     }
     void Update()
     {
