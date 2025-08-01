@@ -7,37 +7,55 @@ using UnityEngine.XR;
 
 public class CustomPlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
-
-    private int count = 0;
+    [Header("Assign in Inspector")]
     public GameObject pcPlayerPrefab;
     public GameObject vrPlayerPrefab;
 
-    private NetworkRunner runner;
+    int _serverSpawnCount = 0;
 
     public async void StartGame(GameMode mode)
     {
-       
+        var runner = gameObject.AddComponent<NetworkRunner>();
+        runner.ProvideInput = true;
+        await runner.StartGame(new StartGameArgs {
+            GameMode     = mode,
+            SessionName  = "MurderMystery",
+            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
+        });
+        runner.AddCallbacks(this);
     }
+
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        // only run this on the "server" instance
-        if (!runner.IsServer)
-            return;
+        // only the server decides what to spawn
+        if (!runner.IsServer) return;
 
-        // RawEncoded: 0=first joiner, 1=second, etc.
-        int joinIndex = (int)player.RawEncoded;
-        
-        // decide which prefab
-        GameObject prefab = (joinIndex == 1)
-            ? vrPlayerPrefab   // second player
-            : pcPlayerPrefab;  // first (and any others)
+        // decide which prefab to use for *this* join:
+        //  • if this is the *first ever* join (count == 0), pick based on device
+        //  • if it’s the *second* join (count == 1), pick the *other* prefab
+        bool localIsVR = XRSettings.isDeviceActive;   
+        GameObject toSpawn;
 
-        Debug.Log($"[Spawner] Player#{joinIndex} joined → spawning {prefab.name}");
-        
-        // this spawn will now show up on every client
-        runner.Spawn(prefab, Vector3.zero, Quaternion.identity, player);
+        if (_serverSpawnCount == 0)
+        {
+            // first player
+            toSpawn = localIsVR ? vrPlayerPrefab : pcPlayerPrefab;
+        }
+        else if (_serverSpawnCount == 1)
+        {
+            // second player
+            toSpawn = localIsVR ? pcPlayerPrefab : vrPlayerPrefab;
+        }
+        else
+        {
+            // fallback for any extras
+            toSpawn = pcPlayerPrefab;
+        }
+
+        Debug.Log($"[Spawner] Join #{_serverSpawnCount + 1} → spawning {toSpawn.name}");
+        runner.Spawn(toSpawn, Vector3.zero, Quaternion.identity, player);
+        _serverSpawnCount++;
     }
-
     // ================= REQUIRED CALLBACKS =================
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player) { }
