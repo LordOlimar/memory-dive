@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 2678515051960665959}
   - component: {fileID: 7909006353015997005}
   - component: {fileID: 3784909547712584028}
+  - component: {fileID: -2789156281273383806}
   m_Layer: 0
   m_Name: IsometricCamera
   m_TagString: IsoCam
@@ -268,6 +269,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   highlightMaterial: {fileID: 2100000, guid: 823f8d5383d173a4fb4153a73427684f, type: 2}
+--- !u!114 &-2789156281273383806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282148808049975126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe94cb0293b414395a00e37674106759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactRange: 5
+  playerCam: {fileID: 0}
 --- !u!1 &6790373001239636474
 GameObject:
   m_ObjectHideFlags: 0
