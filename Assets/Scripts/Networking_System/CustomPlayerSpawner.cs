@@ -16,17 +16,7 @@ public class CustomPlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     public async void StartGame(GameMode mode)
     {
-        runner = gameObject.AddComponent<NetworkRunner>();
-        runner.ProvideInput = true;
-
-        await runner.StartGame(new StartGameArgs()
-        {
-            GameMode = mode,
-            SessionName = "MurderMystery",
-            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
-        });
-
-        runner.AddCallbacks(this); // VERY important!
+       
     }
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
@@ -52,7 +42,29 @@ public class CustomPlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player) { }
 
-    public void OnInput(NetworkRunner runner, NetworkInput input) { }
+    public void OnInput(NetworkRunner runner, NetworkInput input)
+{
+    // Gather PC or VR joystick/keys into our NetworkInputData
+    var data = new NetworkInputData();
+
+    // PC: WASD / Arrow keys
+    float h = Input.GetAxis("Horizontal");
+    float v = Input.GetAxis("Vertical");
+    data.movement = new Vector2(h, v);
+
+    // VR joystick (if you want VR locomotion too)
+    if (UnityEngine.XR.XRSettings.isDeviceActive)
+    {
+        // e.g. left thumbstick
+        var leftHand = UnityEngine.XR.InputDevices.GetDeviceAtXRNode(UnityEngine.XR.XRNode.LeftHand);
+        if (leftHand.TryGetFeatureValue(UnityEngine.XR.CommonUsages.primary2DAxis, out Vector2 stick))
+        {
+            data.movement = stick;
+        }
+    }
+
+    input.Set(data);
+}
 
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
 

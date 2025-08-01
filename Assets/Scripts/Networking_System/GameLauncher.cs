@@ -7,21 +7,16 @@ public class GameLauncher : MonoBehaviour
 
     async void Start()
     {
-
-        FindObjectOfType<CustomPlayerSpawner>().StartGame(GameMode.AutoHostOrClient);
-        if (runnerPrefab == null)
-        {
-            Debug.LogError("Runner prefab is not assigned!");
-            return;
-        }
         var runner = Instantiate(runnerPrefab);
         runner.ProvideInput = true;
 
-        await runner.StartGame(new StartGameArgs
-        {
-            GameMode = GameMode.AutoHostOrClient,
-            SessionName = "MurderMysteryRoom",
-            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
+        await runner.StartGame(new StartGameArgs {
+          GameMode     = GameMode.AutoHostOrClient,
+          SessionName  = "MurderMystery",
+          SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
+
+        // Register your spawner so it only handles OnPlayerJoined
+        runner.AddCallbacks(FindObjectOfType<CustomPlayerSpawner>());
     }
 }
