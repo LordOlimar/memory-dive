@@ -9,7 +9,7 @@ public class QuickStartController : MonoBehaviour
     public void StartCoOp()
     {
         // Load your main game scene, which handles network initialization
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("Cutscene");
     }
 
     public void ShowInstructions()
